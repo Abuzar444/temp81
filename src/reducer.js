@@ -21,24 +21,27 @@ function reducer(state, action) {
 
   if (type === INCREASE) {
     const newCart = new Map(state.cart);
-    const itemId = action.payload.id;
-    const item = newCart.get(itemId);
-    const newItem = { ...item, amount: item.amount + 1 };
-    newCart.set(itemId, newItem);
+
+    const item = newCart.get(payload.id);
+    const newItem = { ...item, amount: item.amount+ 1 };
+    newCart.set(payload.id, newItem);
+
     return { ...state, cart: newCart };
   }
+
   if (type === DECREASE) {
     const newCart = new Map(state.cart);
-    const itemId = action.payload.id;
-    const item = newCart.get(itemId);
 
-    if (item.amount === 1) {
-      newCart.delete(itemId);
+    const item = newCart.get(payload.id);
+
+    if (item.amount < 1) {
+      newCart.delete(payload.id);
       return { ...state, cart: newCart };
     }
 
-    const newItem = { ...item, amount: item.amount - 1 };
-    newCart.set(itemId, newItem);
+    const newItem = { ...item, amount: item.amount-1 };
+    newCart.set(payload.id, newItem);
+
     return { ...state, cart: newCart };
   }
 
