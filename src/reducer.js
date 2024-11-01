@@ -23,7 +23,7 @@ function reducer(state, action) {
     const newCart = new Map(state.cart);
 
     const item = newCart.get(payload.id);
-    const newItem = { ...item, amount: item.amount+ 1 };
+    const newItem = { ...item, amount: item.amount++ };
     newCart.set(payload.id, newItem);
 
     return { ...state, cart: newCart };
@@ -39,7 +39,7 @@ function reducer(state, action) {
       return { ...state, cart: newCart };
     }
 
-    const newItem = { ...item, amount: item.amount-1 };
+    const newItem = { ...item, amount: --item.amount };
     newCart.set(payload.id, newItem);
 
     return { ...state, cart: newCart };
