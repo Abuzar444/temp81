@@ -3,7 +3,7 @@ import { useGlobalContext } from './context';
 import cartItems from './data';
 const CartContainer = () => {
   const { cart, clearCart, totalCost } = useGlobalContext();
-  const cartArray = [...cart];
+  const cartArray = Array.from(cart.entries());
 
   if (cartArray.length === 0) {
     return (
