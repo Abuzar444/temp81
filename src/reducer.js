@@ -19,7 +19,7 @@ function reducer(state, action) {
     return { ...state, cart: newCart };
   }
 
-  if (action.type === INCREASE) {
+  if (type === INCREASE) {
     const newCart = new Map(state.cart);
     const itemId = action.payload.id;
     const item = newCart.get(itemId);
@@ -27,7 +27,7 @@ function reducer(state, action) {
     newCart.set(itemId, newItem);
     return { ...state, cart: newCart };
   }
-  if (action.type === DECREASE) {
+  if (type === DECREASE) {
     const newCart = new Map(state.cart);
     const itemId = action.payload.id;
     const item = newCart.get(itemId);
