@@ -3,7 +3,6 @@ import {
   useReducer,
   useEffect,
   createContext,
-  useState,
 } from 'react';
 
 import {
@@ -47,19 +46,12 @@ export function AppProvider({ children }) {
     dispatch({ type: DECREASE, payload: { id } });
   }
 
-  async function fetchData() {
+  const fetchData = async () => {
     dispatch({ type: LOADING });
-    try {
-      const response = await fetch(url);
-      if (response.ok) {
-        const cart = await response.json();
-        dispatch({ type: DISPLAY, payload: { cart } });
-        console.log(cart);
-      }
-    } catch (err) {
-      console.error(err.message);
-    }
-  }
+    const response = await fetch(url);
+    const cart = await response.json();
+    dispatch({ type: DISPLAY_ITEMS, payload: { cart } });
+  };
 
   useEffect(() => {
     fetchData();
