@@ -50,7 +50,7 @@ export function AppProvider({ children }) {
     dispatch({ type: LOADING });
     const response = await fetch(url);
     const cart = await response.json();
-    dispatch({ type: DISPLAY_ITEMS, payload: { cart } });
+    dispatch({ type: DISPLAY, payload: { cart } });
   };
 
   useEffect(() => {
